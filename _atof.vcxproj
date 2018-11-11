@@ -111,10 +111,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\_atoi\_atoi.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="_atof.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\_atoi\_atoi.h" />
     <ClInclude Include="_atof.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

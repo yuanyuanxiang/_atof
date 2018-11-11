@@ -1,17 +1,32 @@
 #include "_atof.h"
+#include "../_atoi/_atoi.h"
 #include <string.h>
 #include <assert.h>
+#include <stdlib.h>
+
+/************************************************************************
+* @brief 将字符串转换为浮点数（替代 atof 函数）
+* @note 引用了另一个项目"_atoi"的文件，否则请用atoi替换_atoi
+************************************************************************/
+double _atof(const char *src)
+{
+	const char *p = src;
+	while(*p && '.' != *p) ++p;
+	return '.' == *p ? _atoi(src) + __atof(p) : _atoi(src);
+}
 
 /************************************************************************
 * @brief 替代 atof 函数
 * @author 袁沅祥
 * @date 2018.11.11
 * @note 数字必须介于(-1, 1)
+* 举例：0.987	.666	-0.123
 ************************************************************************/
-double _atof(const char *str)
+double __atof(const char *str)
 {
-	assert( ('-' == str[0] && '0' == str[1]) || '0' == str[0] );
-	assert(strlen(str) < 24);
+	const char *p = str;
+	assert( '0' == *p || '.' == *p || ('-' == *p && '0' == p[1]) );
+	assert(strlen(p) < 24);
 	static const double e[][10] = 
 	{
 		0,1E-01,2E-01,3E-01,4E-01,5E-01,6E-01,7E-01,8E-01,9E-01,
@@ -40,8 +55,11 @@ double _atof(const char *str)
 		0,1E-24,2E-24,3E-24,4E-24,5E-24,6E-24,7E-24,8E-24,9E-24
 	};
 	double s = 0; const double *t = e[0];
-	const int &d = '-' == str[0] ? 3 : 2;
-	for (const char *p = str + d; *p; ++p, t += 10)
-		s += t[*p - '0'];
-	return 2 == d ? s : -s;
+	const int &d = '0'==*p ? 2 : ('.'==*p ? 1 : 3);
+	for (const char *i = p + d; *i; ++i, t += 10)
+	{
+		assert('0'<=*i && *i<='9');
+		s += t[*i - '0'];
+	}
+	return d < 3 ? s : -s;
 }

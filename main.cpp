@@ -6,15 +6,15 @@
 
 #ifdef _DEBUG
 // 随机数个数
-#define NUMS 100
+#define NUMS 1000
 // 循环次数
-#define TIMES 100
+#define TIMES 1000
 #else
 #define NUMS 10000
 #define TIMES 10000
 #endif
 
-typedef char str20[20];
+typedef char str20[32];
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
 	str20 p[NUMS];
 	for (int i = 0; i < NUMS; ++i)
 	{
-		double d = rand() / (double)(RAND_MAX + 1);
+		double d = 1e9*rand()/RAND_MAX;
 		sprintf_s(p[i], "%.17f", d);
 	}
 	double _s[NUMS] = {0}, s[NUMS] = {0};

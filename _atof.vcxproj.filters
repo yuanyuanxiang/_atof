@@ -21,9 +21,15 @@
     <ClCompile Include="_atof.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\_atoi\_atoi.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_atof.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\_atoi\_atoi.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
