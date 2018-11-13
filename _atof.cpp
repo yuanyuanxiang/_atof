@@ -25,8 +25,8 @@ double _atof(const char *src)
 double __atof(const char *str)
 {
 	const char *p = str;
-	assert( '0' == *p || '.' == *p || ('-' == *p && '0' == p[1]) );
-	assert(strlen(p) < 24);
+	_assert( '0' == *p || '.' == *p || ('-' == *p && '0' == p[1]) );
+	_assert(strlen(p) < 24);
 	static const double e[][10] = 
 	{
 		0,1E-01,2E-01,3E-01,4E-01,5E-01,6E-01,7E-01,8E-01,9E-01,
@@ -58,7 +58,7 @@ double __atof(const char *str)
 	const int &d = '0'==*p ? 2 : ('.'==*p ? 1 : 3);
 	for (const char *i = p + d; *i; ++i, t += 10)
 	{
-		assert('0'<=*i && *i<='9');
+		_assert('0'<=*i && *i<='9');
 		s += t[*i - '0'];
 	}
 	return d < 3 ? s : -s;
